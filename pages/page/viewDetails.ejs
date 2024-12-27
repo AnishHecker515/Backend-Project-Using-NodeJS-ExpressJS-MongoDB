@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .details-card {
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #f8f9fa;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+        }
+        .room-photo {
+            flex: 1;
+            text-align: center;
+        }
+        .room-photo img {
+            border-radius: 50%;
+            object-fit: cover;
+            width: 250px; /* Increased size */
+            height: 250px; /* Increased size */
+            border: 5px solid #007bff;
+        }
+        .details-section {
+            flex: 2;
+            padding-left: 20px;
+        }
+        .details-section h5 {
+            font-size: 22px;
+            color: #343a40;
+            font-weight: bold;
+        }
+        .details-section h6 {
+            font-size: 18px;
+            color: #6c757d;
+        }
+        .details-section p {
+            margin-bottom: 10px;
+        }
+        .details-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .details-header h1 {
+            color: #007bff;
+            font-weight: bold;
+        }
+        .back-btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <%- include("./header") %>
+
+    <div class="container py-5">
+        <div class="details-header">
+            <h1>Room Details</h1>
+        </div>
+        <div class="details-card">
+            <!-- Room Photo -->
+            <div class="room-photo">
+                <img src="/roomUploads/<%= rooms.roompic %>" alt="<%= rooms.name %>">
+            </div>
+
+            <!-- Room Details -->
+            <div class="details-section">
+                <h5><%= rooms.name %></h5>
+                <h6><%= rooms.bed %> Bed(s)</h6>
+                <p><strong>Bath:</strong> <%= rooms.bath %></p>
+                <p><strong>Price:</strong> $<%= rooms.price %> / Night</p>
+                <p><strong>Description:</strong> <%= rooms.description %></p>
+                <% if(loginStatus == 1) { %>
+                    <a href="/booking/<%=rooms._id%>" class="btn btn-secondary back-btn">Book Now<i class="fa fa-arrow-right ms-3"></i></a>
+                <% } else { %>
+                    <a href="/myaccount" class="btn btn-secondary back-btn">Book Now<i class="fa fa-arrow-right ms-3"></i></a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <%- include("./newsletter") %> 
+    <%- include("./footer") %>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .booking-details, .total-price {
+            margin-bottom: 20px;
+        }
+        .booking-details p, .total-price p {
+            margin: 8px 0;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-danger:hover {
+            background-color: #b21f2d;
+        }
+        .btn:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    
+    <%- include("./header") %> 
+    <div class="container">
+        <h1>Checkout</h1>
+        <div class="booking-details">
+            <h2>Booking Details</h2>
+            <p><strong>Room Name:</strong> <%= booking.roomId.name %></p>
+            <p><strong>User Name:</strong> <%= booking.userId.name %></p>
+            <p><strong>Check-In Date:</strong> <%= new Date(booking.checkIn).toLocaleDateString() %></p>
+            <p><strong>Check-Out Date:</strong> <%= new Date(booking.checkOut).toLocaleDateString() %></p>
+            <p><strong>Total Room Number:</strong> <%= booking.roomNo %></p>
+            <p><strong>Room Price (Per Day):</strong> $<%= booking.roomId.price %></p>
+            <p><strong>Message:</strong> <%= booking.message %></p>
+        </div>
+        <div class="total-price">
+            <h2>Total Price</h2>
+            <% 
+                const checkIn = new Date(booking.checkIn);
+                const checkOut = new Date(booking.checkOut);
+                const timeDifference = checkOut - checkIn;
+                const daysDifference = timeDifference / (1000 * 3600 * 24);
+                const totalPrice = booking.roomId.price * daysDifference;
+            %>
+            <p><strong>Total Price:</strong> $<%= totalPrice.toFixed(2) %></p>
+        </div>
+        <div class="actions">
+            <form action="/confirmBooking" method="post">
+                <input type="hidden" name="roomName" value="<%= booking.roomId.name %>">
+                <input type="hidden" name="roomPrice" value="<%= booking.roomId.price %>">
+                <input type="hidden" name="totalPrice" value="<%= totalPrice %>">
+                <input type="hidden" name="userEmail" value="<%= booking.userId.email %>">
+                <button type="submit" class="btn btn-primary">Confirm Booking</button>
+            </form>
+            <a href="/cancelBooking/<%= booking._id %>" class="btn btn-danger">Cancel Booking</a>
+        </div>
+    </div>
+    
+   <%- include("./newsletter") %> 
+   <%- include("./footer") %> 
+</body>
+</html>
+

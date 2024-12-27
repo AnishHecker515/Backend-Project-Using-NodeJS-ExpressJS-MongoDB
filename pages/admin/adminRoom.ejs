@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Rooms</title>
+    <!-- Include necessary CSS/JS files -->
+    <link rel="stylesheet" href="/path/to/bootstrap.css">
+    <link rel="stylesheet" href="/path/to/font-awesome.css">
+</head>
+<body>
+    <%- include("./adminHeader") %>
+    <%- include("./sidebar") %>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <h1 class="text-center">Manage Rooms</h1>
+            </div>
+            <!-- /. ROW  -->
+            
+            <!-- Add Room Form -->
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Add New Room
+                        </div>
+                        <div class="panel-body">
+                            <form action="/addRoom" method="post" enctype="multipart/form-data" method="post">
+                                <div class="form-group">
+                                    <label for="fname">Room Name</label>
+                                    <input class="form-control" id="fname" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bed">Beds</label>
+                                    <input class="form-control" type="number" id="bed" name="bed" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bath">Baths</label>
+                                    <input class="form-control" type="number" id="bath" name="bath" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">Price (per Night)</label>
+                                    <input class="form-control" type="number" id="price" name="price" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <textarea class="form-control" id="description" name="description" rows="5" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mypic">Upload Room Image</label>
+                                    <input type="file" name="roompic" required>
+                                </div>
+                                <button type="submit" class="btn btn-info">Submit</button>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+</body>
+</html>

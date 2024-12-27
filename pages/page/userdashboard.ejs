@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .dashboard-card {
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            background-color: #f8f9fa;
+        }
+        .profile-pic {
+            border-radius: 50%;
+            object-fit: cover;
+            width: 120px;
+            height: 120px;
+            border: 5px solid #007bff;
+        }
+        .details-section {
+            font-size: 16px;
+        }
+        .details-section h4 {
+            font-size: 20px;
+            color: #343a40;
+            font-weight: bold;
+        }
+        .details-section p {
+            margin-bottom: 5px;
+        }
+        .dashboard-header {
+            color: #007bff;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <%- include("./header") %>
+
+    <div class="container py-5">
+        <div class="dashboard-card d-flex flex-wrap align-items-center">
+            <div class="profile-section text-center">
+                <img 
+                    src="/uploads/<%= user.mypic || 'default.jpg' %>" 
+                    alt="Profile Picture" 
+                    class="profile-pic mb-3">
+                <h5 class="text-primary"><%= user.name %></h5>
+            </div>
+            <div class="details-section flex-grow-1 ml-4">
+                <h4 class="dashboard-header">User Details</h4>
+                <p><strong>Email:</strong> <%= user.email %></p>
+                <p><strong>Age:</strong> <%= user.age %></p>
+                <p><strong>City:</strong> <%= user.city %></p>
+                <p><strong>Phone:</strong> <%= user.phone || 'N/A' %></p>
+                <a href="/edit2/<%= user._id %>" class="btn btn-primary edit-btn">Edit Profile</a>
+            </div>
+        </div>
+    </div>
+
+    <%- include("./newsletter") %> 
+    <%- include("./footer") %>
+</body>
+</html>

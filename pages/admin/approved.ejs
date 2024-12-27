@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("./adminHeader") %>
+    <%- include("./sidebar") %>
+     <!-- /. NAV SIDE  -->
+     <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-head-line">All Users</h1>
+                    <h1 class="page-subhead-line">Showing all users</h1>
+
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    
+                                    <th>Name</th>
+                                    <th>Approved</th>
+                                    <th>View</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (msg=="edit2") { %>
+                                    <div class="alert alert-success alert-dismissible fade in">
+                                      <a hr  ef="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong>user has been updated!</strong>
+                                      </div>
+                                <% } %>
+                                <% if(msg=="del") { %> 
+                                    <div class="alert alert-danger alert-dismissible">
+                                        <a hr  ef="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong>user has been delete!</strong>
+                                    </div>
+                                <% } %>
+<% for (let k of i) { %>
+        <tr>
+            <td><%= k.name %></td>
+            <td>
+                 <%if(k.status==1){%> <a href="/approved/<%= k._id %>" class="btn btn-success">disable now</a><%} 
+                 else {%> <a href="/approved/<%= k._id %>" class="btn btn-danger">approved</a> <%} %> 
+            </td>
+            
+
+                                    <td><a href="/user2/<%= k._id %>" class="btn btn-primary">View Details</a></td>
+                                    <td>  <a href="/edit2/<%= k._id %>"><button style="background-color: green;" class="btn btn-info"> Update </button> </a> </td>
+                                    <td> <a href="/delete2/<%= k._id %>" style="background-color: red;" class="btn btn-info"> Delete </a> </td>
+                                </tr>
+                                <% } %>
+                            </tbody>
+                        </table> 
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Information</title>
+</head>
+<body>
+    <%- include("./adminHeader") %>
+    <%- include("./sidebar") %>
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-head-line">Booking Information</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Room Name</th>
+                                    <th>User Name</th>
+                                    <th>Check In</th>
+                                    <th>Check Out</th>
+                                    <th>Total Room Number</th>
+                                    <th>Room Price</th>
+                                    <th>Message</th>
+                                    <th>Approved</th>
+                                    <th>Total Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(let k of d) { %>
+                                    <tr>
+                                        <td><%= k.room_details.name %></td>
+                                        <td><%= k.user_details.name %></td>
+                                        <td><%= new Date(k.checkIn).toLocaleDateString() %></td>
+                                        <td><%= new Date(k.checkOut).toLocaleDateString() %></td>
+                                        <td><%= k.roomNo %></td>
+                                        <td><%= k.room_details.price %></td>
+                                        <td><%= k.message %></td>
+                                        <td>
+                                            <% if (k.status === 1) { %>
+                                                <button class="btn btn-success" disabled>Approved</button>
+                                            <% } else { %>
+                                                <form action="/approve/<%= k._id %>" method="POST" style="display: inline;">
+                                                    <button type="submit" class="btn btn-danger">Approve</button>
+                                                </form>
+                                            <% } %>
+                                        </td>
+                                        <td>
+                                            <% 
+                                                const checkIn = new Date(k.checkIn);
+                                                const checkOut = new Date(k.checkOut);
+                                                const timeDifference = checkOut - checkIn;
+                                                const daysDifference = timeDifference / (1000 * 3600 * 24);
+                                                const totalPrice = k.room_details.price * daysDifference;
+                                            %>
+                                            <%= totalPrice.toFixed(2) %>
+                                        </td>
+                                        
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

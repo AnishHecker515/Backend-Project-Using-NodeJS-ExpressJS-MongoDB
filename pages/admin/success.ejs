@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+        p {
+            margin: 10px 0;
+        }
+        .details {
+            margin-top: 20px;
+            text-align: left;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+        }
+        .details p {
+            font-size: 16px;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    
+    <%- include("./header") %> 
+    <div class="container">
+        <h1>Payment Successful!</h1>
+        <p>Thank you for your booking. Your payment has been processed successfully.</p>
+        <div class="details">
+    <h2>Booking Details</h2>
+    <p><strong>Room Name:</strong> <%= booking.roomName %></p>
+    <p><strong>Total Price:</strong> $<%= booking.totalPrice %></p>
+    <p><strong>Booking ID:</strong> <%= booking.id %></p>
+    <p><strong>Check In:</strong> <%= booking.checkIn %></p>
+    <p><strong>Check Out:</strong> <%= booking.checkOut %></p>
+</div>
+
+        <a href="/" class="btn">Back to Home</a>
+    </div>
+    <%- include("./newsletter") %> 
+   <%- include("./footer") %> 
+</body>
+</html>

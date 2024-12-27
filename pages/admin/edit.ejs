@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("./adminHeader") %>
+    <%- include("./sidebar") %>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-head-line">Edit Information</h1>
+
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+           <div class="panel panel-info">
+                    <div class="panel-heading">
+                       Edit User's Information
+                    </div>
+                    <div class="panel-body">
+                        <form action="/edit/<%=user._id%>" method="post">
+                                    <div class="form-group">
+                                        <label for="fname">Name:</label><br>
+                                        <input class="form-control" id="fname" name="name" value="<%=user.name%>" ><br>
+                                    </div>
+                             <div class="form-group">
+                                <label for="password">E-Mail</label><br>
+                                        <input class="form-control" type="email" id="email" name="email" value="<%=user.email%>"><br>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Age</label><br>
+                                                <input class="form-control" type="text" id="age" name="age" value="<%=user.age%>"><br>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password">City</label><br>
+                                                        <input class="form-control" type="text" id="city" name="city" value="<%=user.city%>"><br>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="password">Password</label><br>
+                                                                <input class="form-control" type="password" id="password" name="password" value="<%=user.password%>"><br>
+                                                            </div>
+                              
+                             
+                                    <button type="submit" class="btn btn-info">Submit </button>
+
+                                </form>
+                        </div>
+                    </div>
+                        </div>
+
+    </div>
+   
+</body>
+</html>
